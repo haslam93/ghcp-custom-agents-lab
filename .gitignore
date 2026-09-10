@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.pptx
+*.docx
+*.pdf
+INTERNAL*
+**/lab-output/
+**/audit-output/
+**/node_modules/
+**/__pycache__/
+.DS_Store
+Thumbs.db
