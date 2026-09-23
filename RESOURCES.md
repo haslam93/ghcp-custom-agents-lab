@@ -1,7 +1,8 @@
 # Resources
 
-Public references reviewed **10 September 2026**. Recheck versions, current
-pricing and organization policy before a workshop.
+Customization references checked against live official VS Code docs
+**22 September 2026**. Existing billing references/copy were retained from
+**10 September 2026**; recheck pricing and organization policy before a workshop.
 
 ## Intent, specifications and agent teams
 
@@ -24,6 +25,35 @@ and retain your required approvals rather than copying bypass-approval flags.
 - [GitHub Copilot app](https://docs.github.com/en/copilot/concepts/agents/github-copilot-app)
 - [Custom agents in VS Code](https://code.visualstudio.com/docs/agent-customization/custom-agents)
 - [MCP servers in VS Code](https://code.visualstudio.com/docs/agent-customization/mcp-servers)
+
+## Customization: choose the right layer
+
+| Resource | Use it for |
+|---|---|
+| [Customization overview](https://code.visualstudio.com/docs/agent-customization/overview) | Discover, manage and verify customizations for the selected harness |
+| [Custom instructions](https://code.visualstudio.com/docs/agent-customization/custom-instructions) | Repository/team rules applied automatically or by file scope |
+| [Agent skills](https://code.visualstudio.com/docs/agent-customization/agent-skills) | On-demand workflows with SKILL.md and linked supporting files |
+| [Custom agents](https://code.visualstudio.com/docs/agent-customization/custom-agents) | Roles, tool lists and human-controlled handoffs |
+| [Hooks](https://code.visualstudio.com/docs/agent-customization/hooks) | Preview lifecycle automation; review executable commands and policy first |
+| [MCP servers](https://code.visualstudio.com/docs/agent-customization/mcp-servers) | Approved external tool integration; connection is not authorization |
+| [Prompt files](https://code.visualstudio.com/docs/agent-customization/prompt-files) | Reusable manually invoked prompts, currently Local-only; deprecated and not loaded in Agent Host |
+| [Agent plugins](https://code.visualstudio.com/docs/agent-customization/agent-plugins) | Package supported customizations; review provenance, permissions and harness support |
+| [Built-in tool reference](https://code.visualstudio.com/docs/agents/reference/ai-features-cheat-sheet#_chat-tools) | Verify names against the actual tool picker before running |
+
+**Harness caveat:** this kit uses `target: vscode` with the **Local** harness.
+The official overview distinguishes Local and Agent Host; it says Local will
+be removed in a future release. Do not assume these tool names, handoffs or
+prompt-file support work unchanged in Agent Host, Copilot CLI or cloud. Validate
+an adaptation with the facilitator if Local is unavailable; no bypass mode.
+
+Frontmatter names checked against the official custom-agent and tool references:
+`read/readFile`, `search/fileSearch`, `search/textSearch`, `search/codebase`,
+`edit/editFiles`, `edit/createFile`, `execute/runInTerminal`,
+`execute/getTerminalOutput`. No wildcard tool sets are enabled. Auditors have
+only read/search; the fixer explicitly adds editing/terminal, while the local
+ticket writer adds only creation. Unsupported tools may be silently ignored
+by VS Code, so schema checks alone are not runtime verification.
+Handoffs use `send: false`; previewing a prompt does not grant write approval.
 
 ## Billing and model choice
 
@@ -48,3 +78,4 @@ not a license discount or a guarantee of the cheapest total task.
 - [Self-paced guide](LAB_GUIDE.md)
 - [Ticketing workflow](MCP-SETUP.md)
 - [Spec template](SPEC_TEMPLATE.md)
+- [Bonus skill challenge](BONUS_SKILL.md)

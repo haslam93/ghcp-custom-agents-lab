@@ -1,20 +1,34 @@
 # [Action and affected component]
 
-**Status:** Draft - human-validated evidence / Draft - validation pending
+**Status:** Preview - human-validated evidence / Local / unpublished - human-validated evidence / Verified Jira record
 
 **Source finding:** [ID and approved scope]
 
+**Severity:** [CRITICAL / HIGH / MEDIUM / LOW and evidence-backed rationale;
+for a non-security documentation ticket, reader impact instead]
+
+**Confidence:** [High / Medium and uncertainty; separate from severity]
+
+**Human validation:** [Reviewer and evidence/conditions personally checked]
+
 ## Problem and impact
 
-[Who is affected and why the supported finding matters.]
+[Who is affected, bounded consequence and why it matters.]
 
-## Evidence
+## Expected versus actual behavior
 
-[Repository-relative paths, line ranges or symbols; concise redacted evidence.]
+- Expected: [Required safe/correct behavior]
+- Actual: [Supported current behavior, not an unconfirmed claim]
 
-## Proposed change
+## Evidence and conditions
 
-[The smallest useful correction.]
+[Repository-relative paths, line ranges or symbols; concise redacted evidence.
+Required access/conditions, controls and counterevidence examined.
+No secrets, exploit payloads or unsupported runtime/advisory claims.]
+
+## Proposed remediation
+
+[Smallest defensive correction for maintainer review; not an automatic fix.]
 
 ## Non-goals and compatibility
 
@@ -32,13 +46,24 @@ These are planned checks, not claimed successful results.]
 
 ## Routing and handling
 
-- System: Not selected
-- Sandbox project: Not selected
-- Item type: Not selected
-- Visibility: Not selected
-- Owner: Team to assign
-- Duplicate search: Not performed - required before publishing
+- System: [Local Markdown / approved Jira instance]
+- Project: [Exact approved Jira project or Not applicable - local only]
+- Item type: [Approved Jira type or Local task]
+- Owner: Unknown - team to assign
+- Routing: [Responsible team/component or Unknown - owner to confirm]
+- Workflow status: [Local / unpublished or actual Jira status from readback]
+- Confidentiality: [Owner-approved handling classification; Unknown blocks external publication]
+- Visibility: [Approved restricted audience; no assumption that a Jira project is private]
+- Duplicate search: [Not performed - local only; or actual approved Jira search result]
 - External creation: Not performed
+- Local path: [Exact approved new path, normally lab-output\tickets\SEC-01.md; or Not created]
+- Jira ID: None - local only
+- Jira URL: None - local only
 
-Use the owner's approved restricted process for security-sensitive evidence.
-This draft is not authorization to publish it.
+In a Jira payload, omit local-only identity placeholders; Jira generates its
+own ID/URL. Report them only from actual readback. For local files retain
+Local / unpublished and no fabricated Jira identity. Record uncertain writes
+honestly; reconcile before retrying or choosing a local alternative.
+
+Use the owner's restricted incident/disclosure process for sensitive evidence.
+This preview/template is not authorization to save or publish it.

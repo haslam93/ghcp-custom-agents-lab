@@ -1,116 +1,183 @@
-# Self-paced lab: two audits, one next action
+# Agentic Development with GitHub Copilot: self-paced lab
 
-**40 minutes. No slide-by-slide lecture.**
+**40 minutes. Three introduction slides; work from this guide at your own pace.**
+Use your own approved repository, not the public workshop kit.
 
-Use one existing approved repository. Run both custom auditors, inspect their
-evidence and draft one supported next action. If nothing is supported, retain
-the honest result rather than inventing a defect or creating an empty ticket.
+**Agenda (IST):** GitHub introduction **09:50-10:10 (20 minutes)**;
+self-paced lab **10:10-10:50 (40 minutes)**; break **10:50-11:00 (10 minutes)**.
 
 ## Suggested pace
 
-| Minutes | Do |
-|---|---|
-| 00-05 | Get the kit, open your repo, check agent discovery and tools |
-| 05-15 | Run doc-auditor; open the documentation and source evidence |
-| 15-25 | Run security-auditor; inspect callers, guards and limitations |
-| 25-35 | Review both reports and draft one human-validated finding |
-| 35-40 | Approved MCP ticket creation, or joint review of the draft |
+| Lab minutes | Clock time (IST) | Do |
+|---|---|---|
+| 00-05 | 10:10-10:15 | Setup: approved repo, tools, small scopes and team roles |
+| 05-13 | 10:15-10:23 | Documentation audit + transparent scoped score |
+| 13-25 | 10:23-10:35 | Approved documentation fixes + reviewed PR |
+| 25-33 | 10:35-10:43 | Bounded security triage + human review |
+| 33-40 | 10:43-10:50 | One reviewed Jira ticket or actual local ticket file |
 
-Pairing is encouraged: one shared screen and one active run at a time.
-Swap who leads and reviews between passes; the authorized account holder
-operates the client. Do not share credentials or evade usage limits.
+Teams of **THREE OR MORE** are encouraged; solo/pairs remain welcome.
+One licensed driver, navigators/reviewers, one shared active run at a time.
+Avoid duplicate AI-credit spend; do not share credentials. A teammate with
+approved Jira access uses their own sign-in for that step, not a duplicate run.
+The [bonus skill challenge](BONUS_SKILL.md) is optional, after core work/time permitting.
 
-## 1. Get ready
+## 1. Setup (00-05)
 
-Follow the six setup steps in [README.md](README.md). Copy both `.github\agents`
-and `.github\audit-guides` into your target repo without overwriting existing
-configuration. Open the target repo in VS Code, not this kit.
+Follow [README.md](README.md). Copy both `.github\agents` and
+`.github\audit-guides` into the target repo without overwriting existing files.
+Select VS Code **Local** and inspect each role's actual tools. Keep approvals on.
+Choose a docs path plus relevant source/manifests, and one security entry point
+plus its necessary callers/guards. Keep secret stores and production data out.
+Use Auto where supported/allowed or an appropriate model; keep model/tools stable
+within a coherent pass. No approved repo? Join an authorized team; don't relax policy.
 
-Choose two small scopes manually: a docs path with a related manifest/source,
-and one relevant module/entry point for security. Do not begin with a
-whole-monorepo scan. Keep production data and secret stores out of scope.
+## 2. Audit documentation and score (05-13)
 
-Use Auto where supported and allowed, or choose a model appropriate to the
-task. Harder source reasoning can justify a more capable model.
-Keep the model and tools stable within a coherent pass.
-
-If no repo is approved, pair with an authorized participant or follow the
-facilitator's example. Do not relax policy or upload a customer repo here.
-
-## 2. Documentation audit
-
-Select **doc-auditor**. Replace the brackets with actual paths:
+Select **doc-auditor**. Replace brackets with actual approved paths:
 
 ```text
-Audit [docs path] against [manifest and relevant source].
-Use the documentation checklist, report template and finding template.
-Keep the coverage table compact. Return at most two actionable gaps with
-the docs claim, source evidence, file/line references, impact, confidence,
-smallest correction and acceptance check.
-Read/search only. No commands, edits, external tools or ticket creation.
+Audit [docs path] against [manifest and small relevant source scope].
+Use documentation-checks, report-template and finding-template.
+Report missing/incorrect docs with at most two actionable findings.
+Apply rubric DOC-R1: show each check, earned/possible points, source evidence,
+N/A reasons, unreviewed checks and weighted coverage. Score only inspected
+applicable checks; mark incomplete scope provisional. No evidence/denominator
+means no score. Read/search only; no execution, edits or external actions.
 ```
 
-Look for both sides of the evidence. Keep the output in chat or save it
-manually in an approved location. Do not select the ticket handoff yet.
+Open cited docs AND source; for missing docs, inspect the recorded search scope.
+Check the score arithmetic and coverage. A high score with low coverage is not
+repository health. Mark findings **Validated**, **Needs evidence**, or **Rejected**
+with reasons. Agree which validated gaps to fix. Do not fabricate a demo score.
+An optional **audit-reviewer** challenge adds usage; it is not required or human validation.
 
-## 3. Security audit
+## 3. Fix agreed docs and open a PR (13-25)
 
-Same repository, **new focused chat**, **security-auditor**. Supply relevant
-scope facts instead of pasting the whole documentation conversation.
+Select the **Plan approved documentation fixes** handoff (`send: false`) or
+select **doc-fixer** manually. This is a deliberate transition out of read-only
+audit mode. Clicking a handoff does not approve edits or remote writes.
 
 ```text
-Inspect [one approved module or entry point] and its necessary callers/guards.
-Use the security checklist and shared report/finding templates.
-Trace the trust boundary and actual controls. Return at most two supported
-candidates with file/line evidence, required conditions, severity rationale,
-confidence, uncertainty and a safe regression-test idea.
-Read/search only. Do not execute exploits, expose secrets, edit or publish.
-If none is supported, state that and the limits of the inspection.
+Fix these validated findings and open a PR: [DOC IDs and evidence I checked].
+First inspect only [exact target repo root], branch/status/diff and remote.
+Propose the smallest docs-only changes to [exact allowed paths], new branch
+[unused branch name] from [exact base branch], and existing checks to run.
+Use pr-template. Do not edit or publish until I approve the plan.
+Never use the public workshop repository as the destination.
 ```
 
-Open the guards and callers. Static source triage is not a security
-certificate. A no-supported-findings result completes this pass.
-
-## 4. Human review, then one draft
-
-Review both outputs. Mark each candidate **Validated**, **Needs evidence**,
-or **Rejected**, with a reason. A model's confidence is not validation.
-
-For an optional second model opinion, select **audit-reviewer** and provide
-only one candidate and its approved evidence scope. This adds usage; it is
-not required, and does not replace the human decision.
-
-Select **ticket-drafter** only after identifying a finding and opening its
-evidence:
+Review the repo, remote, base, branch, proposed edits and check commands.
+Copied kit agents/guides may be untracked: approve their exact path list to
+remain unchanged/unstaged, outside the docs PR. Any other staged/working changes
+or name collision require owner resolution; no reset, stash, overwrite or broad staging.
+Approve a precise local plan:
 
 ```text
-Draft one ticket for [DOC/SEC finding ID] using the ticket template.
-I personally checked [paths/lines] and confirmed [specific evidence].
-Preserve [scope, non-goals and handling limits].
-Keep unknown routing fields explicit. Return Markdown in chat only.
-Do not publish or claim duplicate search was performed.
+I approve the shown docs-only edits for [exact repo and paths], creating
+[new branch] from [base branch], and these checks: [exact commands].
+Make only these edits on the new branch, then show the full diff and actual
+check outcomes. Do not commit, push or create a PR yet.
+Leave these copied setup files unchanged and unstaged: [exact path list or none].
 ```
 
-If nothing is validated, keep a clearly labeled needs-evidence note instead
-of a publish-ready ticket. Do not create a finding to satisfy the exercise.
+Inspect the actual diff. Ask **doc-auditor** to recheck the same DOC-R1 checks
+against the same scope if time permits (read-only; no automatic second run).
+Before/after is comparable only with the same assessed checks, weights, scope
+and N/A decisions; otherwise label **not comparable** and explain. A planned
+check is not a passed check.
 
-## 5. Connect only if ready
+After reviewing edits and results, approve the publication separately:
 
-If an owner-approved ticketing MCP is already enabled, use [MCP-SETUP.md](MCP-SETUP.md).
-Normal Agent performs that separate action; the four custom agents stay
-read-only. Publish at most one ticket per pair.
+```text
+I approve committing only [exact reviewed files/diff], pushing [new branch]
+to [exact approved owner/repo and remote], and opening one PR into [base].
+Use the reviewed PR title/body. Check for an existing PR first.
+Never force-push, merge, deploy or include unrelated files.
+Read back the created PR and report its actual URL, head and base.
+```
 
-Without MCP, review the draft together: improve one acceptance criterion
-and name the person responsible for the next action. This is a complete
-lab outcome, not a failed integration exercise.
+`doc-fixer` uses approved Git and authenticated `gh` through its terminal tools;
+no assumed GitHub MCP is required. Do not install/authenticate tools by exposing
+tokens. If auth, policy, checks or remote tooling block completion, keep the
+local docs edits/patch and PR draft in chat using the shared PR template.
+State **PR not opened** (or **outcome unknown** after an ambiguous write).
+Reconcile an uncertain create using approved read tools before any retry.
+Never invent a PR URL. No supported docs gaps means no empty PR.
 
-## Keep results private
+## 4. Security triage (25-33)
 
-Audit outputs may contain security-sensitive or proprietary evidence.
-Do not paste them into this public repo's issues, pull requests or discussions.
-Do not commit or upload them automatically.
-Use only a team-approved destination and retain unresolved uncertainty.
+Start a new focused chat with **security-auditor**, passing scope facts rather
+than the entire docs conversation:
 
-Optional fixes belong after the exercise or in a later build sprint. Use a
-normal Agent, a scoped plan, an appropriate branch and the repo's existing
-checks. No automatic push, merge, deployment or ticket closure.
+```text
+Inspect [one approved entry point/module] and [necessary callers/guards].
+Use security-checks, report-template and finding-template. Read/search only.
+Rank up to two evidence-backed findings CRITICAL, HIGH, MEDIUM, then LOW.
+Include conditions, controls/counterevidence, impact and confidence separately
+from severity. Put unconfirmed leads in Needs evidence, not vulnerabilities.
+Disclose the scope and cap as triage, not completeness. No exploits, secrets,
+security code edits or external writes. No supported findings is valid.
+```
+
+Open callers/guards and check required conditions. A human validates one
+supported finding, or records that none was supported. Security remediation
+is not part of this lab; tickets propose work for maintainer review.
+
+## 5. Create one reviewed ticket (33-40)
+
+Select **ticket-drafter** (or the security handoff, `send: false`):
+
+```text
+Prepare one ticket preview for [SEC finding ID] using ticket-template.
+I personally checked [paths/lines] and validated [evidence and conditions].
+Preserve [non-goals and confidentiality]. Show unknown owner/routing explicitly.
+Preview in chat only for review; do not write a file or Jira record yet.
+```
+
+Review severity, evidence, expected versus actual behavior, remediation,
+acceptance criteria, owner, routing, status and confidentiality.
+
+### If you or a teammate has approved Jira MCP
+
+Ask Copilot to create a ticket in your Jira project. Follow
+[MCP-SETUP.md](MCP-SETUP.md): switch to normal **Agent**, select only approved
+Jira MCP tools, search duplicates, approve the exact payload/destination and
+read back the real ID/URL. Publish at most one ticket per team.
+
+### Otherwise: create an actual local ticket
+
+Stay with **ticket-drafter**. Choose a **new noncolliding path** in the target
+repo, normally `lab-output\tickets\SEC-01.md` (match the selected finding ID).
+Inspect the exact path directly (ignore rules can hide it from search);
+if it exists, propose `SEC-01-02.md` or another unused
+filename and obtain approval. Never overwrite. Then send:
+
+```text
+I approve creating exactly one new local file [exact target repo root]\
+lab-output\tickets\SEC-01.md with the reviewed ticket content.
+Label it Local / unpublished; no Jira ID or URL. Check that it does not exist,
+create it with edit/createFile, then read it back and report the exact path.
+Do not modify any existing file, commit, push or call external tools.
+```
+
+This is a real file, not just chat text. If the creation tool is unavailable
+or fails, report **file not created** and retain the preview; do not claim the
+local-ticket outcome is complete. If Jira creation failed or was ambiguous,
+do not silently fall back: reconcile first, then obtain explicit approval for
+a local alternative only after confirming no remote record exists.
+
+If no security finding is validated, do not invent a ticket. Retain the
+no-supported-findings/needs-evidence result and next owner check.
+
+## Finish safely
+
+Keep reports and local tickets in an approved private location. The kit's
+`.gitignore` excludes `lab-output`, but copying only the two `.github` folders
+does **not** copy that ignore rule: verify your target repo's exclusions with
+the owner; never stage or publish the output directory automatically.
+Do not put customer code, reports or security evidence in the public workshop
+repo's issues/PRs/discussions. A local result is not externally published.
+Capture the real PR URL or honest blocked state, score with coverage, and one
+ticket's verified ID/URL or local path. Stop; no merges, deployment, security
+auto-fixes, ticket transitions or extra paid runs.
